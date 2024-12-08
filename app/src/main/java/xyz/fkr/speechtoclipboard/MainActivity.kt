@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
             intArrayOf(Color.GREEN)
         )
         ImageViewCompat.setImageTintList(binding.buttonRecordAudio, colorStateList)
-        binding.buttonCopySpeechText.visibility = View.VISIBLE
         binding.buttonRecordAudio.isClickable = false
 
         try {
@@ -102,13 +101,14 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onEndOfSpeech() {
-                    Toast.makeText(this@MainActivity, "End of speech", Toast.LENGTH_SHORT).show()
+                    binding.buttonCopySpeechText.visibility = View.VISIBLE
                     cancelRecord()
                     binding.buttonCopySpeechText.visibility = View.VISIBLE
                 }
 
                 override fun onError(error: Int) {
                     Snackbar.make(view, "Nothing captured", Snackbar.LENGTH_INDEFINITE).setAction("Again") { recordAudio(view) }.show()
+                    cancelRecord()
                 }
 
                 override fun onResults(results: Bundle?) {
@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         ImageViewCompat.setImageTintList(binding.buttonRecordAudio, colorStateList)
-        Toast.makeText(this, "Recording canceled", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Recording is over", Toast.LENGTH_SHORT).show()
 
     }
 
@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity,
                 Manifest.permission.RECORD_AUDIO
             ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
+
             }
 
             ActivityCompat.shouldShowRequestPermissionRationale(
@@ -179,8 +179,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
                 requestPermissionLauncher.launch(
                     Manifest.permission.RECORD_AUDIO
                 )

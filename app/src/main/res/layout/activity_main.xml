@@ -5,7 +5,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral20"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
     <ImageView
@@ -24,13 +24,14 @@
 
     <EditText
         android:id="@+id/textViewSpeech"
-        android:layout_width="266dp"
-        android:layout_height="338dp"
+        android:layout_width="277dp"
+        android:layout_height="366dp"
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonRecordAudio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
